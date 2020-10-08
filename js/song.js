@@ -7,8 +7,8 @@
 //get the recommendations
 
 const APIController = (function() {
-  const clientId = "3d587cbc3d534a7a8d1ee805440a6e43";
-  const clientSecret = "c239943d4b7840ccb6f1a9d8ac514c99";
+  const clientId = "id";
+  const clientSecret = "secret";
 
     // private methods
     const _getToken = async () => {
