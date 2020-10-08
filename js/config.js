@@ -1,5 +1,13 @@
 function loadFile(event){
-    console.log("Got picture!");
+    console.log("[!] Got picture!");
+    console.log(`%c ________________________________________
+< thank youuuuuuuuuu mooooooooooooooooo >
+ ----------------------------------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||`, "font-family:monospace")
     var image = document.getElementById("output");
     // Get image from output 
     image.src = URL.createObjectURL(event.target.files[0])
@@ -8,7 +16,7 @@ function loadFile(event){
 
 // main function for interacting with face api
 async function handle(event) {
-    console.log("Loading picture");
+    console.log("-----------Loading picture-------------");
     document.getElementById("output").src = "img/loading.gif";
     $('#emotion').html("Loading...");
     // target the output element ID and change content
@@ -17,16 +25,21 @@ async function handle(event) {
 
     var myform = document.getElementById("image-form");
         var payload = new FormData(myform);
-
-        console.log(`What we're sending.. ${payload}`);
-        console.log("Posting your image...");
+    console.log(`%c ________________________________________
+< Posting your image to Azure to get emotions... >
+ ----------------------------------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||`, "font-family:monospace")
         const resp = await fetch("https://spotifyfaceapp.azurewebsites.net/api/imageparser?code=HPEACydXT9FLjCQwejBqYYerVU5rJCjUayUz4i8tK6s9ahY55XnCKw==", {
             method: 'POST',
             body: payload
         });
 
         var data = await resp.json();
-        console.log(`Your results.. ${payload}`);
+        //sets emotion to the first result of the request
 
         try {
           var emotion = data.result[0].faceAttributes.emotion;
@@ -36,10 +49,7 @@ async function handle(event) {
           window.location.reload();
         }
 
-        //sets emotion to the first result of the request
 
-        console.log(emotion);
-        console.log(payload);
         var resultString = `
         <h3> Emotions in your image: </h3><br />
         <p> 😠 Anger: ${emotion.anger}</p>
@@ -61,7 +71,14 @@ async function handle(event) {
         } else if (valence < 0) {
             valence = 0
         }
-        console.log("Putting emotions in!");
+            console.log(`%c ________________________________________
+< You will be able to see your emotions soon! >
+ ----------------------------------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||`, "font-family:monospace")
         $('#emotion').html(resultString);
         $('#hidden-emotion').html(valence);
 }

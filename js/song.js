@@ -12,7 +12,7 @@ const APIController = (function() {
 
     // private methods
     const _getToken = async () => {
-        console.log("Getting the token to get you authorized...")
+        console.log("[!] Getting the token to get you authorized...")
         //https://developer.spotify.com/documentation/general/guides/authorization-guide/#client-credentials-flow
         const result = await fetch('https://accounts.spotify.com/api/token', {
             method: 'POST',
@@ -35,7 +35,7 @@ const APIController = (function() {
     }
 
     const _getPlaylistItems = async (token, playlistId, limit) => {
-        console.log("Getting the playlist...")
+        console.log("[?] Getting 5 songs out of a playlist...")
         //https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlists-tracks/
         //set the query parameter limit to this limit ^ param
         const queryString = `limit=${limit}`
@@ -54,7 +54,7 @@ const APIController = (function() {
     }
 
     const _getRecommendations = async(token, seedTracks, limit) => {
-        console.log('Getting your personalized recommendations...')
+        console.log('[?] Getting your personalized recommendation based on your emotions..')
         //uses emotion data to set a minimum and max valence
         const emotion = document.querySelector('#hidden-emotion').value;
         
@@ -151,7 +151,10 @@ return {
     createTrackDetail(img, title, artist) {
         const detailDiv = document.querySelector(DOMElements.divSongDetail)
 
+        console.log("[!] Putting your song in Step 3!")
+
         // any time user clicks a new song, we need to clear out the song detail div
+        //?
         detailDiv.innerHTML = '';
 
         const html = 
@@ -185,6 +188,14 @@ const APPController = (function(UICtrl, APICtrl) {
     //create event listener and button to call Spotify API on submit
     const buttonElement = DOMInputs.songButton;
     buttonElement.addEventListener('click', async(event) => {
+                    console.log(`%c ________________________________________
+< Thank you for clicking! New song coming... >
+ ----------------------------------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||`, "font-family:monospace")
         const token = await APIController.getToken();
         //api related functions are async and therefore need to be called with await
         const playlistId = "37i9dQZF1DXcBWIGoYBM5M";
