@@ -4,6 +4,7 @@ Week 1 - Week 4 **BitCamp** project that utilizes **Microsoft Azure Functions** 
 
 ![enter image description here](https://github.com/emsesc/express10ns/blob/main/img/favicon.png?raw=true)
 
+Note: Currently the Functions are disabled and therefore the project is not currently up and running.
 
 # Website
 
